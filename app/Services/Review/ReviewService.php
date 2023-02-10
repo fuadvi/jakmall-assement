@@ -3,7 +3,6 @@
 namespace App\Services\Review;
 
 use App\Repository\Review\IReviewRepository;
-use Illuminate\Support\Facades\Cache;
 
 class ReviewService implements IReviewService
 {

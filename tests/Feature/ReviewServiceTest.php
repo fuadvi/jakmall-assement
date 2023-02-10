@@ -100,5 +100,4 @@ class ReviewServiceTest extends TestCase
         $this->assertNotContains(collect($this->reviewService->getProductById(55))->toJson(),$product);
     }
 
-
 }

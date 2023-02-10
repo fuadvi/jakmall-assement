@@ -31,7 +31,7 @@ class ReviewSummaryCommand extends Command
         $reviews = $review->getReview();
         if (!$reviews)
         {
-            $this->warn('Failed to retrieve reviews statistics');
+            $this->warn('Failed to retrieve reviews');
             ReviewProductCommand::FAILURE;
         }
 

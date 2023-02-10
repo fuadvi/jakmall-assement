@@ -37,21 +37,21 @@ class ReviewProductCommand extends Command
         $products = $product->getProductById($productId);
 
         if (!$products) {
-            $this->warn('Failed to retrieve products statistics');
+            $this->warn('Failed to retrieve products');
             ReviewProductCommand::FAILURE;
         }
 
         $reviews = $review->getReview();
 
         if (!$reviews) {
-            $this->warn('Failed to retrieve reviews statistics');
+            $this->warn('Failed to retrieve reviews');
             ReviewProductCommand::FAILURE;
         }
 
         $product_reviews = $review->getReviewByProductId($productId);
 
         if (!$product_reviews) {
-            $this->warn('Failed to retrieve product reviews statistics');
+            $this->warn('Failed to retrieve product reviews');
             ReviewProductCommand::FAILURE;
         }
 
