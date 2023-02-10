@@ -26,8 +26,8 @@ class ProductRepository implements IProductRepository
 
     public function get(int $productId, array $products): array
     {
-        return array_filter($products, function ($review) use ($productId) {
-            return $review['id'] === $productId;
+        return array_filter($products, function ($products) use ($productId) {
+            return $products['id'] === $productId;
         });
     }
 

@@ -10,10 +10,21 @@ use App\Services\Product\IProductService;
 use App\Services\Product\ProductService;
 use App\Services\Review\IReviewService;
 use App\Services\Review\ReviewService;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    public function provides()
+    {
+        return [
+            IProductService::class,
+            IProductRepository::class,
+            IReviewService::class,
+            IReviewRepository::class,
+        ];
+    }
+
     /**
      * Bootstrap any application services.
      *

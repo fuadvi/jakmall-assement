@@ -2,7 +2,6 @@
 
 namespace App\Commands;
 
-use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 
 

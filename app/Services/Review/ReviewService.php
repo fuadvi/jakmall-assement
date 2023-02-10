@@ -14,7 +14,7 @@ class ReviewService implements IReviewService
 
     public function getReview(): array
     {
-        return $this->reviewRepo->list();
+          return $this->reviewRepo->list();
     }
 
     public function getReviewById(int $reviewId): array
