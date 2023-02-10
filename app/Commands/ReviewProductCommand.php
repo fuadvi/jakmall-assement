@@ -3,6 +3,8 @@
 namespace App\Commands;
 
 use LaravelZero\Framework\Commands\Command;
+use \App\Services\Product\IProductService;
+use \App\Services\Review\IReviewService;
 
 
 class ReviewProductCommand extends Command
@@ -27,8 +29,8 @@ class ReviewProductCommand extends Command
      * @return mixed
      */
     public function handle(
-        \App\Services\Product\IProductService $product,
-        \App\Services\Review\IReviewService $review
+        IProductService $product,
+        IReviewService $review
     )
     {
         $productId = (int) $this->argument('productId');
@@ -46,7 +48,7 @@ class ReviewProductCommand extends Command
             ReviewProductCommand::FAILURE;
         }
 
-        $product_reviews = $review->getReviewById($productId);
+        $product_reviews = $review->getReviewByProductId($productId);
 
         if (!$product_reviews) {
             $this->warn('Failed to retrieve product reviews statistics');

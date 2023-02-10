@@ -3,6 +3,7 @@
 namespace App\Repository\product;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 
 class ProductRepository implements IProductRepository
@@ -21,15 +22,21 @@ class ProductRepository implements IProductRepository
 
     public function list(): array
     {
-        return $this->product;
+        if (!Cache::has('product'))
+        {
+            return $this->product;
+        }
+        return Cache::get('product');
     }
 
     public function get(int $productId, array $products): array
     {
-        return array_filter($products, function ($products) use ($productId) {
-            return $products['id'] === $productId;
-        });
+        if (!Cache::has('product_'.$productId))
+        {
+            return array_filter($products, function ($products) use ($productId) {
+                return $products['id'] === $productId;
+            });
+        }
+        return Cache::get('product_'.$productId);
     }
-
-
 }

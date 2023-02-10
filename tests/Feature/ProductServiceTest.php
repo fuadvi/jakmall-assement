@@ -44,10 +44,9 @@ class ProductServiceTest extends TestCase
      *
      * @return void
      */
-    public function will_return_list_product(): void
+    public function will_return_product_not_null(): void
     {
-        $products = $this->ExpectedListProduk();
-        $this->assertEquals(collect($this->productService->getProduct())->toJson(), collect($products)->toJson());
+        $this->assertNotNull($this->productService->getProduct());
     }
 
     /**

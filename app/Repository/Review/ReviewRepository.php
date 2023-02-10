@@ -2,6 +2,7 @@
 
 namespace App\Repository\Review;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 
 class ReviewRepository implements \App\Repository\Review\IReviewRepository
@@ -19,14 +20,23 @@ class ReviewRepository implements \App\Repository\Review\IReviewRepository
 
     public function list(): array
     {
-        return $this->reviews;
+        if (!Cache::has('review'))
+        {
+            return $this->reviews;
+        }
+        return Cache::get('review');
+
     }
 
     public function get(int $productId, array $reviews): array
     {
-        return array_filter($reviews, function ($review) use ($productId) {
-            return $review['product_id'] === $productId;
-        });
+        if (!Cache::has('product_review'))
+        {
+            return array_filter($reviews, function ($review) use ($productId) {
+                return $review['product_id'] === $productId;
+            });
+        }
+       return Cache::get('product_review');
     }
 
 

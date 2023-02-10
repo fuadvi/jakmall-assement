@@ -3,6 +3,7 @@
 namespace App\Services\Review;
 
 use App\Repository\Review\IReviewRepository;
+use Illuminate\Support\Facades\Cache;
 
 class ReviewService implements IReviewService
 {
@@ -17,10 +18,10 @@ class ReviewService implements IReviewService
           return $this->reviewRepo->list();
     }
 
-    public function getReviewById(int $reviewId): array
+    public function getReviewByProductId(int $productId): array
     {
         $review =$this->reviewRepo->list();
-        return $this->reviewRepo->get($reviewId, $review);
+        return $this->reviewRepo->get($productId, $review);
     }
 
     public function calculate(array $product_reviews): array

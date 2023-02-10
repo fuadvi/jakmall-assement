@@ -3,6 +3,7 @@
 namespace App\Services\Product;
 
 use App\Repository\product\IProductRepository;
+use Illuminate\Support\Facades\Cache;
 
 class ProductService implements IProductService
 {
